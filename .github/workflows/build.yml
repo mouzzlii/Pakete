@@ -1,14 +1,14 @@
 name: Build Android APK
 
-on: [push]
+on:
+  push:
+    branches: [ "main", "master" ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up JDK 17
@@ -17,20 +17,22 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Install System Tools & Gradle
+      - name: Install System Gradle & Tools
         run: |
           sudo apt-get update
           sudo apt-get install -y gradle unzip
 
-      - name: Build Debug APK
+      - name: Generate Wrapper if Missing
         run: |
           if [ ! -f ./gradlew ]; then
             gradle wrapper --gradle-version 8.5
           fi
           chmod +x gradlew
-          ./gradlew assembleDebug
 
-      - name: Upload APK
+      - name: Build Debug APK
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK Artifact
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
