@@ -5,6 +5,8 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      ANDROID_SDK_ROOT: /usr/local/lib/android/sdk
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -15,18 +17,16 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
-      - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Download & Setup Gradle
+      - name: Install System Tools & Gradle
         run: |
-          wget -q https://services.gradle.org/distributions/gradle-8.5-bin.zip
-          unzip -q gradle-8.5-bin.zip
-          echo "$PWD/gradle-8.5/bin" >> $GITHUB_PATH
+          sudo apt-get update
+          sudo apt-get install -y gradle unzip
 
       - name: Build Debug APK
         run: |
-          gradle wrapper --gradle-version 8.5
+          if [ ! -f ./gradlew ]; then
+            gradle wrapper --gradle-version 8.5
+          fi
           chmod +x gradlew
           ./gradlew assembleDebug
 
