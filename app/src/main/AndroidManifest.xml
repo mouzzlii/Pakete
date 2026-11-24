@@ -2,10 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:label="MultiCarrierScan"
         android:supportsRtl="true"
-        android:theme="@style/Theme.MultiCarrierScan">
+        android:theme="@style/Theme.MultiCarrierScan"
+        android:usesCleartextTraffic="false">
         <activity
             android:name=".MainActivity"
             android:exported="true"
