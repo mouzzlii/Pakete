@@ -23,7 +23,7 @@ Die frühe Code-Zuordnung anhand der Zeichenlänge ist nicht zuverlässig und da
 
 Für die aktuelle Android-Scan-Zentrale siehe [TRAKUNA](https://github.com/mouzzlii/Fuck). Für die übergreifende Integrationsarchitektur siehe [multi-carrier-gateway](https://github.com/mouzzlii/multi-carrier-gateway).
 
-Dieses Repository bleibt als historischer Entwicklungsstand erhalten. Es wurden keine Projektdateien gelöscht.
+Dieses Repository bleibt als historischer Entwicklungsstand erhalten. Die tatsächlich eingebundenen App-Quellen und die kanonische Android-Manifestdatei bleiben erhalten. Drei fehlplatzierte Altdateien außerhalb der Android-Build-Struktur werden in einem separaten Maintenance-PR entfernt.
 
 ## Build
 
